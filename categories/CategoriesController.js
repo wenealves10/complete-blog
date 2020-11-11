@@ -8,6 +8,10 @@ router.get('/admin/categories/new',(req, res) =>{
     res.render('admin/categories/new')
 })
 
+router.get('/admin/categories', (req, res) =>{
+    res.render('admin/categories/index')
+})
+
 router.post('/categories/save', (req, res) =>{
     let title = req.body.title
     if(title != undefined && title != '' && title != ' '){
@@ -23,5 +27,6 @@ router.post('/categories/save', (req, res) =>{
         res.redirect('/admin/categories/new')
     }
 })
+
 
 module.exports = router
