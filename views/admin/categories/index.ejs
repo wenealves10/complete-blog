@@ -1,0 +1,37 @@
+<%- include('../../partials/header.ejs') %>
+<body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container mt-3 mb-3">
+        <div class="card bg-secondary text-light">
+            <div class="card-header text-center">
+                <h3>Categorias</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive-sm">
+                    <table class="table table-bordered">
+                        <thead class="table-light text-dark text-center">
+                            <tr>
+                                <th scope="col">#ID</th>
+                                <th scope="col">#Título</th>
+                                <th scope="col">#Slug</th>
+                                <th scope="col">#Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <% categories.forEach(category =>{ %>
+                             <tr>
+                                 <th scope="row" class="text-center"><%= category.id %></th>
+                                 <td><%= category.title%> </td>
+                                 <td><%= category.slug %> </td>
+                                 <td>apagar</td>
+                               </tr> 
+                           <% }) %> 
+    
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../../partials/footer.ejs') %>
