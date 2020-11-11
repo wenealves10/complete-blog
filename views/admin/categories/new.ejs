@@ -2,14 +2,14 @@
 <body>
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-3">
-        <div class="card bg-success text-light">
+        <div class="card bg-primary text-light">
             <div class="card-header text-center">
                 <h4>Cadastrar Categorias do Blog</h4>
             </div>
             <div class="card-body">
                 <form action="/categories/save" method="POST">
                     <label for="title"><strong>Categoria</strong></label>
-                    <input required name="title" id="title" type="text" class="form-control mb-1" placeholder="Título da Categoria"/>
+                    <input required name="title" id="title" type="text" class="form-control mb-2" placeholder="Título da Categoria"/>
                     <button class="btn btn-info">Cadastrar</button>
                 </form>
             </div>
