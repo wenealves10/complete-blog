@@ -18,9 +18,11 @@ const Article = connection.define('articles',{
 
 // relacionamentos entre tables
 Category.hasMany(Article) // 1 para Muitos
-Article.belongsTo(Category)  // 1 para 1
+Article.belongsTo(Category) // 1 para 1
 
 // Sincronizar e Recriar Tables
-Article.sync({ force: true })
+// Article.sync({ force: true }).then(() => {
+//     console.log('sincronizado')
+// })
 
 module.exports = Article
