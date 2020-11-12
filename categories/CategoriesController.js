@@ -24,7 +24,7 @@ router.post('/categories/save', (req, res) =>{
                 lower: true
             })
         }).then(() =>{
-            res.redirect('/admin/categories/new')
+            res.redirect('/admin/categories')
         })        
     }else{
         res.redirect('/admin/categories/new')
