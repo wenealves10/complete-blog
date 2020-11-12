@@ -3,7 +3,7 @@
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-3 mb-3">
         <hr>
-        <h2>Criar Nova Categoria</h2>
+        <h2>Criar nova categoria</h2>
         <a href="/admin/categories/new" class="btn btn-outline-info">Criar Categoria</a>
         <hr>
         <div class="card bg-secondary text-light">
@@ -11,8 +11,8 @@
                 <h3>Categorias</h3>
             </div>
             <div class="card-body">
-                <div class="table-responsive-sm">
-                    <table class="table table-bordered">
+                <div class="table-responsive">
+                    <table class="table">
                         <thead class="table-light text-dark text-center">
                             <tr>
                                 <th scope="col">#ID</th>
@@ -25,9 +25,12 @@
                            <% categories.forEach(category =>{ %>
                              <tr>
                                  <th scope="row" class="text-center"><%= category.id %></th>
-                                 <td><%= category.title%> </td>
-                                 <td><%= category.slug %> </td>
-                                 <td>apagar</td>
+                                 <td><%= category.title%></td>
+                                 <td><%= category.slug%></td>
+                                 <td class="text-center d-flex flex-nowrap justify-content-center">
+                                     <button class="btn btn-warning">Editar</button>
+                                     <button class="btn btn-danger ml-3">Apagar</button>
+                                 </td>
                                </tr> 
                            <% }) %> 
     
