@@ -28,22 +28,50 @@
                                  <td><%= category.title%></td>
                                  <td><%= category.slug%></td>
                                  <td class="text-center d-flex flex-nowrap justify-content-center">
-                                     <button class="btn btn-warning">Editar</button>
+
+                                  <!--Modal Edit-->
+                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<%= category.id %>">
+                                    Editar
+                                  </button>
+                                  <div class="modal fade" id="edit<%= category.id %>" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title text-dark" id="editModal">Atualizar Categoria</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form action="/categories/edit" method="POST" id="form-edit">
+                                            <label class="text-dark" for="editsaves"><strong>Categoria</strong></label>
+                                            <input type="text" class="form-control" id="editsaves" name="categoryEdit"
+                                            value="<%= category.title %>">
+                                          </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                          <button type="button" class="btn btn-success" onclick="sendEdit('#form-edit')">Salvar Atualização</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                    <!--Modal delete-->
                                      <button type="button" class="btn btn-danger ml-2" data-toggle="modal" data-target="#delete<%= category.id %>">
                                         Apagar
-                                      </button>
-                                        <div class="modal fade" id="delete<%= category.id %>" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+                                      </button><!--Button delete-->
+                                        <div class="modal fade" id="delete<%= category.id %>" tabindex="-1" role="dialog" aria-labelledby="Deletar" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h5 class="modal-title text-dark" id="TituloModalCentralizado">Deseja apagar essa categoria?</h5>
+                                                  <h5 class="modal-title text-dark" id="Deletar">Deseja apagar categoria <%= category.title %>?</h5>
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                                     <span aria-hidden="true">&times;</span>
                                                   </button>
                                                 </div>
                                                 <div class="modal-body text-dark">
-                                                  <strong>Id: <%= category.id%> | Título: <%= category.title %> |
-                                                  Slug: <%= category.slug %></strong>
+                                                  <strong class="text-warning">Se apagar essa categoria todos os artigos relacionado serão apagados!</strong>
                                                 </div>
                                                 <div class="modal-footer">
                                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -55,6 +83,7 @@
                                               </div>
                                             </div>
                                           </div>
+                                          
                                      </td>
                                </tr> 
                            <% }) %> 
