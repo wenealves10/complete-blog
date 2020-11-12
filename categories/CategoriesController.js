@@ -53,4 +53,9 @@ router.post('/categories/delete', (req, res) =>{
 })
 
 
+router.post('/categories/edit',(req, res) =>{
+    
+})
+
+
 module.exports = router
