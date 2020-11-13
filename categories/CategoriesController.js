@@ -54,7 +54,10 @@ router.post('/categories/delete', (req, res) =>{
 
 
 router.post('/categories/edit',(req, res) =>{
-    
+    let title = req.body.categoryEdit
+    let editID = req.body.editID
+
+    res.send(title+' '+editID)
 })
 
 
