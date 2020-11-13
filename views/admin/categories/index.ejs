@@ -1,98 +1,112 @@
 <%- include('../../partials/header.ejs') %>
 <body>
-    <%- include('../../partials/navbar.ejs') %>
-    <div class="container mt-3 mb-3">
-        <hr>
-        <h2>Criar nova categoria</h2>
-        <a href="/admin/categories/new" class="btn btn-outline-info">Criar Categoria</a>
-        <hr>
-        <div class="card bg-secondary text-light">
-            <div class="card-header text-center">
-                <h3>Categorias</h3>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class="table-light text-dark text-center">
-                            <tr>
-                                <th scope="col">#ID</th>
-                                <th scope="col">#Título</th>
-                                <th scope="col">#Slug</th>
-                                <th scope="col">#Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                           <% categories.forEach(category =>{ %>
-                             <tr>
-                                 <th scope="row" class="text-center"><%= category.id %></th>
-                                 <td><%= category.title%></td>
-                                 <td><%= category.slug%></td>
-                                 <td class="text-center d-flex flex-nowrap justify-content-center">
+  <%- include('../../partials/navbar.ejs') %>
+  <div class="container mt-3 mb-3">
+    <hr>
+    <h2>Criar nova categoria</h2>
+    <a href="/admin/categories/new" class="btn btn-outline-info">Criar Categoria</a>
+    <hr>
+    <div class="card bg-secondary text-light">
+      <div class="card-header text-center">
+        <h3>Categorias</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="table-light text-dark text-center">
+              <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">#Título</th>
+                <th scope="col">#Slug</th>
+                <th scope="col">#Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% categories.forEach(category =>{ %>
+              <tr>
+                <th scope="row" class="text-center"><%= category.id %></th>
+                <td><%= category.title%></td>
+                <td><%= category.slug%></td>
+                <td class="text-center d-flex flex-nowrap justify-content-center">
 
-                                  <!--Modal Edit-->
-                                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<%= category.id %>">
-                                    Editar
-                                  </button>
-                                  <div class="modal fade" id="edit<%= category.id %>" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title text-dark" id="editModal">Atualizar Categoria</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                            <span aria-hidden="true">&times;</span>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <form action="/categories/edit" method="POST" id="form-edit">
-                                            <label class="text-dark" for="editsaves"><strong>Categoria</strong></label>
-                                            <input type="text" class="form-control" id="editsaves" name="categoryEdit"
-                                            value="<%= category.title %>">
-                                          </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                          <button type="button" class="btn btn-success" onclick="sendEdit('#form-edit')">Salvar Atualização</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+                  <!--Modal Edit-->
+                  <button type="button" class="btn btn-warning" data-toggle="modal"
+                    data-target="#edit<%= category.id %>">
+                    Editar
+                  </button>
+                  <div class="modal fade" id="edit<%= category.id %>" tabindex="-1" role="dialog"
+                    aria-labelledby="editModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title text-dark" id="editModal">Atualizar Categoria</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
 
-                                    <!--Modal delete-->
-                                     <button type="button" class="btn btn-danger ml-2" data-toggle="modal" data-target="#delete<%= category.id %>">
-                                        Apagar
-                                      </button><!--Button delete-->
-                                        <div class="modal fade" id="delete<%= category.id %>" tabindex="-1" role="dialog" aria-labelledby="Deletar" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h5 class="modal-title text-dark" id="Deletar">Deseja apagar categoria <%= category.title %>?</h5>
-                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                    <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                                </div>
-                                                <div class="modal-body text-dark">
-                                                  <strong class="text-warning">Se apagar essa categoria todos os artigos relacionado serão apagados!</strong>
-                                                </div>
-                                                <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                  <form action="/categories/delete" method="POST">
-                                                    <input type="number" hidden="hidden" name="id" value="<%= category.id%>">
-                                                    <button type="submit" class="btn btn-danger">Apagar</button>
-                                                  </form>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          
-                                     </td>
-                               </tr> 
-                           <% }) %> 
-    
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                          <form action="/categories/edit" method="POST" id="form-edit<%= category.id %>">
+
+                            <label class="text-dark"
+                              for="editsaves<%= category.id  %>"><strong>Categoria</strong></label>
+                            <input type="text" class="form-control" id="editsaves<%= category.id  %>"
+                              name="categoryEdit" value="<%= category.title %>" />
+
+                            <input type="number" name="editID" hidden="hidden" value="<%= category.id %>" />
+                          </form>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                          <button type="button" class="btn btn-success"
+                            onclick="sendEdit('#form-edit<%= category.id %>')">Salvar Atualização</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Modal delete-->
+                  <button type="button" class="btn btn-danger ml-2" data-toggle="modal"
+                    data-target="#delete<%= category.id %>">
+                    Apagar
+                  </button>
+                  <!--Button delete-->
+                  <div class="modal fade" id="delete<%= category.id %>" tabindex="-1" role="dialog"
+                    aria-labelledby="Deletar" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title text-dark" id="Deletar">Deseja apagar categoria <%= category.title %>?
+                          </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body text-dark">
+                          <strong class="text-warning">Se apagar essa categoria todos os artigos relacionado serão
+                            apagados!</strong>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                          <form action="/categories/delete" method="POST">
+                            <input type="number" hidden="hidden" name="id" value="<%= category.id%>">
+                            <button type="submit" class="btn btn-danger">Apagar</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </td>
+              </tr>
+              <% }) %>
+
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
+  </div>
 </body>
 <%- include('../../partials/footer.ejs') %>
