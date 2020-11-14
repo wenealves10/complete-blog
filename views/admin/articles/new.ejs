@@ -2,15 +2,23 @@
 <body>
     <%- include('../../partials/navbar.ejs') %>
     <div class="container mt-3">
-        <div class="card bg-primary text-light">
+        <div class="card bg-secondary text-light m-2">
             <div class="card-header text-center">
                 <h4>Novo Artigo</h4>
             </div>
             <div class="card-body">
-                <form action="/categories/save" method="POST">
-                    <input required name="title" type="text" class="form-control mb-2" placeholder="Digite o título aqui"/>
+                <form action="/articles/save" method="POST">
+                    <label for="categoryTitle">Título do artigo</label>
+                    <input required name="title" id="categoryTitle" type="text" class="form-control mb-2" placeholder="Digite o título aqui"/>
+                    <label for="categoryID">Categoria</label> 
+                    <select required name="category" id="categoryID" class="form-control mb-4">
+                        <% categories.forEach(category =>{%> 
+                            <option value="<%= category.id %>"><%= category.title %></option>
+                        <% }) %> 
+                    </select>
+                    <label for="article">Artigo</label>                   
                     <textarea name="body" id="article" class="form-control" placeholder="Escreva o contéudo aqui"></textarea>
-                    <button class="btn btn-success mt-2">Publicar</button>
+                    <button type="submit" class="btn btn-success mt-2">Publicar</button>
                 </form>
             </div>
         </div>
