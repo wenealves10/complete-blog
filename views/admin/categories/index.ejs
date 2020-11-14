@@ -23,8 +23,8 @@
             </thead>
             <tbody>
               <% categories.forEach(category =>{ %>
-              <tr>
-                <th scope="row" class="text-center"><%= category.id %></th>
+              <tr class="text-center">
+                <th scope="row"><%= category.id %></th>
                 <td><%= category.title%></td>
                 <td><%= category.slug%></td>
                 <td class="text-center d-flex flex-nowrap justify-content-center">
