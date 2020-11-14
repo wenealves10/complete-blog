@@ -1,0 +1,42 @@
+<%- include('../../partials/header.ejs') %> 
+<body>
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container">
+        <hr>
+        <h2>Criar novo artigo</h2>
+        <a href="/admin/articles/new" class="btn btn-outline-info">Criar artigo</a>
+        <hr>
+        <div class="card bg-secondary text-light">
+            <div class="card-header text-center">
+                <h3>Artigos</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="table-light text-dark text-center">
+                            <tr>
+                                <th scope="col">#ID</th>
+                                <th scope="col">#Título</th>
+                                <th scope="col">#Slug</th>
+                                <th scope="col">#Categoria</th>
+                                <th scope="col">#Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% articles.forEach(article => {%>
+                                <tr class="text-center">
+                                    <th scope="row"><%= article.id %></th>
+                                    <td><%= article.title %></td>
+                                    <td><%= article.slug %></td>
+                                    <td><%= article.category.title %></td>
+                                    <td>Apagar Editar</td>
+                                </tr>
+                            <% })  %> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('../../partials/footer.ejs') %> 
