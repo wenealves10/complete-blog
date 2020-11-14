@@ -57,7 +57,19 @@ router.post('/categories/edit',(req, res) =>{
     let title = req.body.categoryEdit
     let editID = req.body.editID
 
-    res.send(title+' '+editID)
+    Category.update({
+        title: title,
+        slug: slugify(title,{
+            lower: true
+        })
+    },{
+        where: {
+            id: editID
+        }
+    }).then(_ =>{
+        res.redirect('/admin/categories')
+    })
+    
 })
 
 
