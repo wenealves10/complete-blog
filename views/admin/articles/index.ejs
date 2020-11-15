@@ -30,7 +30,10 @@
                                 <td><%= article.title %></td>
                                 <td><%= article.slug %></td>
                                 <td><%= article.category.title %></td>
-                                <td>
+                                <td class="text-center d-flex flex-nowrap justify-content-center">
+                                    <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning text-white">Editar</a>
+                                    <!--Button Edit-->
+
                                     <button type="button" class="btn btn-danger ml-2" data-toggle="modal"
                                         data-target="#delete<%= article.id %>">Apagar</button>
                                     <!--Button delete-->
