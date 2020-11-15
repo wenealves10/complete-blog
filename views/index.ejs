@@ -8,20 +8,25 @@
             <div class="col-md-6 px-0">
               <h1 class="display-4 font-italic">Blog do WeneDev</h1>
               <p class="lead my-3">Várias linhas formando uma introdução, informando novos leitores rápido e eficientemente sobre o que é mais interessante, neste post.</p>
-              <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue lendo...</a></p>
             </div>
-          </div>
-        <div class="row">
-            <% articles.forEach(article =>{%>
+        </div>
 
-            <div class="col-sm-6 mb-2">
-                <div class="card border-info">
-                    <div class="card-body text-center">
-                        <h5 class="card-title"><%= article.title %></h5>
-                        <a href="/<%= article.slug %>" class="btn btn-outline-primary">Ler artigo</a>
+        <div class="row mb-2">
+            <% articles.forEach(article =>{%>
+                    <div class="col-md-6">
+                      <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                          <strong class="d-inline-block mb-2 text-primary"><%=  %></strong>
+                          <h3 class="mb-0">
+                            <a class="text-dark" href="/<%= article.slug %>"><%= article.title %></a>
+                          </h3>
+                          <div class="mb-1 text-muted"><%=  %></div>
+                          <p class="card-text mb-auto"><%=  %></p>
+                          <a href="/<%= article.slug %>" class="btn btn-outline-primary">Continue lendo</a>
+                        </div>
+                        <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
+                      </div>
                     </div>
-                </div>
-            </div>
             <% }) %>
         </div>
     </div>
