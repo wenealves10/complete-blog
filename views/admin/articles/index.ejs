@@ -1,4 +1,5 @@
-<%- include('../../partials/header.ejs') %> 
+<%- include('../../partials/header.ejs') %>
+
 <body>
     <%- include('../../partials/navbar.ejs') %>
     <div class="container">
@@ -24,14 +25,46 @@
                         </thead>
                         <tbody>
                             <% articles.forEach(article => {%>
-                                <tr class="text-center">
-                                    <th scope="row"><%= article.id %></th>
-                                    <td><%= article.title %></td>
-                                    <td><%= article.slug %></td>
-                                    <td><%= article.category.title %></td>
-                                    <td>Apagar Editar</td>
-                                </tr>
-                            <% })  %> 
+                            <tr class="text-center">
+                                <th scope="row"><%= article.id %></th>
+                                <td><%= article.title %></td>
+                                <td><%= article.slug %></td>
+                                <td><%= article.category.title %></td>
+                                <td>
+                                    <button type="button" class="btn btn-danger ml-2" data-toggle="modal"
+                                        data-target="#delete<%= article.id %>">Apagar</button>
+                                    <!--Button delete-->
+                                    <div class="modal fade" id="delete<%= article.id %>" tabindex="-1" role="dialog"
+                                        aria-labelledby="Deletar" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-dark" id="Deletar">Deseja apagar
+                                                        artigos <%= article.title %>?
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Fechar">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body text-dark">
+                                                    <strong class="text-warning">Se apagar essa artigo você perderá tudo dele imagens e videos!</strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Fechar</button>
+                                                    <form action="/articles/delete" method="POST">
+                                                        <input type="number" hidden="hidden" name="id"
+                                                            value="<%= article.id%>">
+                                                        <button type="submit" class="btn btn-danger">Apagar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% })  %>
                         </tbody>
                     </table>
                 </div>
@@ -39,4 +72,4 @@
         </div>
     </div>
 </body>
-<%- include('../../partials/footer.ejs') %> 
+<%- include('../../partials/footer.ejs') %>
