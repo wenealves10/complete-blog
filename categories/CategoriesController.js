@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Category = require('./Category')
+const Article = require('../articles/Article')
 const slugify = require('slugify')
 
 
@@ -36,12 +37,18 @@ router.post('/categories/delete', (req, res) =>{
     if(id != undefined){
         if(!isNaN(id)){
             
-            Category.destroy({
-                where:{
-                    id
+            Article.destroy({
+                where: {
+                    categoryId: id
                 }
             }).then(_ =>{
-                res.redirect('/admin/categories')
+                Category.destroy({
+                    where:{
+                        id
+                    }
+                }).then(_ =>{
+                    res.redirect('/admin/categories')
+                })
             })
 
         }else{
