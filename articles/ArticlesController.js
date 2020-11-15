@@ -22,6 +22,20 @@ router.get('/admin/articles/new',(req, res) =>{
     })
 })
 
+router.get('/admin/articles/edit/:id',(req, res) =>{
+    let id = req.params.id
+    if(!isNaN(id) && id != undefined){
+        Article.findByPk(id)
+        .then(articles =>{
+            res.render('admin/articles/edit',{
+                articles
+            })
+        })
+    }else{
+        res.redirect('/admin/articles')
+    }
+})
+
 router.post('/articles/save',(req, res) =>{
     let categoryId = req.body.category
     let articleTitle = req.body.title
@@ -55,6 +69,31 @@ router.post('/articles/delete',(req, res) =>{
         }).then(_ =>{
             res.redirect('/admin/articles')
         })
+    }else{
+        res.redirect('/admin/articles')
+    }
+})
+
+router.post('/articles/edit',(req, res) =>{
+    let id = req.body.id
+    let title = req.body.title
+    let body = req.body.body
+    if(!isNaN(id) && id != undefined){
+
+        Article.update({
+            title: title,
+            slug: slugify(title,{
+                lower: true
+            }),
+            body: body
+        },{
+            where: {
+                id: id
+            }
+        }).then(_ =>{
+            res.redirect('/admin/articles')
+        })
+        
     }else{
         res.redirect('/admin/articles')
     }
