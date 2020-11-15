@@ -18,33 +18,64 @@ const configs = {
 }
 
 // configurando o express
-app.set('view engine','ejs')
+app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
 app.use(bodyParser.json())
 
 // conexão com o banco de dados
 connection
-  .authenticate()
-     .then((result) => {
-         console.log('connection success!')
-     }).catch((err) => {
-         console.log('connection erro: '+err)
-     });
+    .authenticate()
+    .then((result) => {
+        console.log('connection success!')
+    }).catch((err) => {
+        console.log('connection erro: ' + err)
+    });
 
 // rotas principal da aplicação 
-app.get('/',(req, res) =>{
-    res.render('index')
+app.get('/', (req, res) => {
+    Article.findAll({
+        order: [
+            ['id','DESC']
+        ]
+    })
+        .then(articles => {
+            res.render('index', {
+                articles
+            })
+        })
+})
+
+// rota de ler artigo
+app.get('/:slug', (req, res) => {
+    let slug = req.params.slug
+    Article.findOne({
+        where: {
+            slug
+        }
+
+    }).then(article => {
+        if (article != undefined) {
+            res.render('article',{
+                article
+            })
+        } else {
+            res.redirect('/')
+        }
+    }).catch(err => {
+        res.redirect('/')
+    })
 })
 
 // rotas categorias
-app.use('/',categoriesController)
+app.use('/', categoriesController)
 
 // rotas artigos
-app.use('/',articlesController)
+app.use('/', articlesController)
 
 // porta da aplicação
 app.listen(configs.port, () => {
     console.log(`Server port ${configs.port}`)
 })
-
