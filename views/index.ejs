@@ -1,8 +1,28 @@
-<%- include('./partials/header.ejs') %> 
+<%- include('./partials/header.ejs') %>
+
 <body>
-    <%- include('./partials/navbar.ejs') %> 
-    <div class="container">
-        <h1>Blog do WeneDev</h1>
+    <%- include('./partials/homenavbar.ejs') %>
+
+    <div class="container mb-2 mt-2">
+        <div class="jumbotron">
+            <h1 class="display-4">Olá, Bem-vindo!</h1>
+            <p class="lead">Este é um simples blog do wenedev.</p>
+            <hr>
+            <a href="#" class="btn btn-outline-info">Ler Mais...</a>
+          </div>
+        <div class="row">
+            <% articles.forEach(article =>{%>
+
+            <div class="col-sm-6 mb-2">
+                <div class="card border-info">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><%= article.title %></h5>
+                        <a href="/<%= article.slug %>" class="btn btn-outline-primary">Ler artigo</a>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
     </div>
 </body>
-<%- include('./partials/footer.ejs') %> 
+<%- include('./partials/footer.ejs') %>
