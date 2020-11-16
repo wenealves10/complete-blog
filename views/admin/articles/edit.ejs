@@ -11,6 +11,12 @@
                     <label for="categoryTitle">Título do artigo</label>
                     <input required name="title" id="categoryTitle" type="text" class="form-control mb-2" placeholder="Digite o título aqui" value="<%= articles.title %>"/>
                     <input type="hidden" name="id" value="<%= articles.id  %>">
+                    <label for="categoryID">Categoria</label> 
+                    <select required name="category" id="categoryID" class="form-control mb-4">
+                        <% categories.forEach(category =>{%> 
+                            <option value="<%= category.id %>"><%= category.title %></option>
+                        <% }) %> 
+                    </select>
                     <label for="sinopse">Sinopse do artigo</label>
                     <input type="text" name="sinopse" class="form-control" id="sinopse" required placeholder="Escreva a sinopse aqui" value="<%= articles.sinopse %>">
                     <label for="article">Artigo</label>                   

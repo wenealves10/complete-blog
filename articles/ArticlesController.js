@@ -27,9 +27,13 @@ router.get('/admin/articles/edit/:id',(req, res) =>{
     if(!isNaN(id) && id != undefined){
         Article.findByPk(id)
         .then(articles =>{
-            res.render('admin/articles/edit',{
-                articles
-            })
+            Category.findAll()
+                .then(categories =>{
+                    res.render('admin/articles/edit',{
+                        articles,
+                        categories
+                    })
+                })
         })
     }else{
         res.redirect('/admin/articles')
@@ -81,6 +85,7 @@ router.post('/articles/edit',(req, res) =>{
     let title = req.body.title
     let body = req.body.body
     let sinopse = req.body.sinopse
+    let categoryId = req.body.category
     if(!isNaN(id) && id != undefined){
 
         Article.update({
@@ -89,7 +94,8 @@ router.post('/articles/edit',(req, res) =>{
                 lower: true
             }),
             body: body,
-            sinopse: sinopse
+            sinopse: sinopse,
+            categoryId: categoryId
         },{
             where: {
                 id: id
