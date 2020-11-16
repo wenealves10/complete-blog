@@ -16,6 +16,8 @@
                             <option value="<%= category.id %>"><%= category.title %></option>
                         <% }) %> 
                     </select>
+                    <label for="sinopse">Sinopse do artigo</label>
+                    <input type="text" name="sinopse" class="form-control" id="sinopse" required placeholder="Escreva a sinopse aqui"/>
                     <label for="article">Artigo</label>                   
                     <textarea name="body" id="article" class="form-control" placeholder="Escreva o contéudo aqui"></textarea>
                     <button type="submit" class="btn btn-success mt-2">Publicar</button>
