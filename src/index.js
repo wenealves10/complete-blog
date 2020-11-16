@@ -39,7 +39,8 @@ app.get('/', (req, res) => {
     Article.findAll({
             order: [
                 ['id', 'DESC']
-            ]
+            ],
+            include: [{model: Category}]
         })
         .then(articles => {
             Category.findAll()
@@ -88,9 +89,10 @@ app.get('/categories/:slug',(req, res) =>{
         if(category != undefined){
             Category.findAll()
                 .then(categories =>{
-                    res.render('index',{
+                    res.render('filtro',{
                         articles: category.articles,
-                        categories
+                        categories,
+                        category
                     })
                 })
         }else{
