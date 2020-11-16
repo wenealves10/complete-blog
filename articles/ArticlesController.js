@@ -40,14 +40,16 @@ router.post('/articles/save',(req, res) =>{
     let categoryId = req.body.category
     let articleTitle = req.body.title
     let articleBody = req.body.body
+    let sinopse = req.body.sinopse
 
-    if(articleTitle != undefined && articleBody != undefined){
+    if(articleTitle != undefined && articleBody != undefined && sinopse != undefined){
         Article.create({
             title: articleTitle,
             slug: slugify(articleTitle,{
                 lower: true
             }),
             body: articleBody,
+            sinopse,
             categoryId,
         }).then(() =>{
             res.redirect('/admin/articles')
@@ -78,6 +80,7 @@ router.post('/articles/edit',(req, res) =>{
     let id = req.body.id
     let title = req.body.title
     let body = req.body.body
+    let sinopse = req.body.sinopse
     if(!isNaN(id) && id != undefined){
 
         Article.update({
@@ -85,7 +88,8 @@ router.post('/articles/edit',(req, res) =>{
             slug: slugify(title,{
                 lower: true
             }),
-            body: body
+            body: body,
+            sinopse: sinopse
         },{
             where: {
                 id: id
