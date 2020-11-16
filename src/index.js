@@ -40,7 +40,8 @@ app.get('/', (req, res) => {
             order: [
                 ['id', 'DESC']
             ],
-            include: [{model: Category}]
+            include: [{model: Category}],
+            limit: 4
         })
         .then(articles => {
             Category.findAll()
@@ -84,7 +85,7 @@ app.get('/categories/:slug',(req, res) =>{
         where: {
             slug: slug
         },
-        include: [{model: Article}]
+        include: [{model: Article}],
     }).then(category =>{
         if(category != undefined){
             Category.findAll()
