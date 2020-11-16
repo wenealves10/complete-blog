@@ -13,6 +13,10 @@ const Article = connection.define('articles',{
     body: {
         type: Sequelize.TEXT,
         allowNull: false
+    },
+    sinopse: {
+        type: Sequelize.TEXT,
+        allowNull: false
     }
 })
 
