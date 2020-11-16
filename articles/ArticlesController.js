@@ -40,6 +40,48 @@ router.get('/admin/articles/edit/:id',(req, res) =>{
     }
 })
 
+router.get('/articles/page/:number',(req, res) =>{
+    let page = req.params.number
+    let offset = 0
+
+    if(isNaN(page) || page == 1){
+        offset = 0
+    }else{
+        offset = (parseInt(page) - 1) * 4
+    }
+
+    Article.findAndCountAll({
+        limit: 4,
+        offset: offset,
+        include: [{model: Category}]
+    }).then(articles => {
+
+        let next = false
+
+        if(offset + 4 >= articles.count){
+            next = false
+        }else{
+            next = true
+        }
+
+        let result = {
+            articles,
+            next
+        }
+        
+        Category.findAll()
+            .then(categories =>{
+                res.render('admin/articles/pages',{
+                    result,
+                    categories
+                })
+            })
+
+    })
+
+})
+
+
 router.post('/articles/save',(req, res) =>{
     let categoryId = req.body.category
     let articleTitle = req.body.title
