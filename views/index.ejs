@@ -10,8 +10,10 @@
               <p class="lead my-3">Várias linhas formando uma introdução, informando novos leitores rápido e eficientemente sobre o que é mais interessante, neste post.</p>
             </div>
         </div>
-
-        <div class="row mb-2">
+        <h3 class="pb-3 mb-4 font-italic border-bottom">
+          Posts recentes!
+        </h3>
+        <div class="row mb-1">
             <% articles.forEach(article =>{%>
                     <div class="col-md-6">
                       <div class="card flex-md-row mb-4 shadow-sm h-md-250">
@@ -29,6 +31,10 @@
                     </div>
             <% }) %>
         </div>
+        <nav class="blog-pagination d-flex justify-content-end">
+          <a class="btn btn-outline-secondary disabled" href="/">Mais novos</a>
+          <a class="btn btn-outline-primary ml-2" href="/articles/page/2">Mais antigos</a>
+        </nav>
     </div>
 </body>
 <%- include('./partials/footer.ejs') %>
