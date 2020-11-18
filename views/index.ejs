@@ -14,6 +14,7 @@
           Posts recentes!
         </h3>
         <div class="row mb-1">
+          <% if(articles.length > 0){%> 
             <% articles.forEach(article =>{%>
                     <div class="col-md-6">
                       <div class="card flex-md-row mb-4 shadow-sm h-md-250">
@@ -30,6 +31,11 @@
                       </div>
                     </div>
             <% }) %>
+            <% }else{%>
+              <div class="col-12 px-4 mx-auto text-center mb-5">
+                <h1 class="display-4 font-italic m-3">Nenhum post foi encontrado!</h1>
+              </div>
+            <% } %> 
         </div>
         <nav class="blog-pagination d-flex justify-content-end">
           <a class="btn btn-outline-secondary disabled" href="/">Mais novos</a>
