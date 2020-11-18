@@ -7,10 +7,12 @@ const connection = require('../database/database')
 // Models da Aplicação
 const Article = require('../articles/Article')
 const Category = require('../categories/Category')
+const Users = require('../users/Users')
 
 // Routers da Aplicação
 const categoriesController = require('../categories/CategoriesController')
 const articlesController = require('../articles/ArticlesController')
+const usersController = require('../users/UsersController')
 
 // objeto de configuração da aplicação
 const configs = {
@@ -109,6 +111,9 @@ app.use('/', categoriesController)
 
 // rotas artigos
 app.use('/', articlesController)
+
+//rotas de usuários
+app.use('/',usersController)
 
 // porta da aplicação
 app.listen(configs.port, () => {
