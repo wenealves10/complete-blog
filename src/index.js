@@ -4,6 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const connection = require('../database/database')
 
+
 // Models da Aplicação
 const Article = require('../articles/Article')
 const Category = require('../categories/Category')
@@ -50,7 +51,7 @@ app.get('/', (req, res) => {
                 .then(categories => {
                     res.render('index', {
                         articles,
-                        categories
+                        categories,
                     })
                 })
         })

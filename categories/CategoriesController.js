@@ -5,6 +5,7 @@ const Article = require('../articles/Article')
 const slugify = require('slugify')
 
 
+
 router.get('/admin/categories/new',(req, res) =>{
     res.render('admin/categories/new')
 })
