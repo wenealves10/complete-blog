@@ -17,6 +17,10 @@ const Article = connection.define('articles',{
     sinopse: {
         type: Sequelize.TEXT,
         allowNull: false
+    },
+    thumbnail: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 
