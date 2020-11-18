@@ -1,34 +1,49 @@
 <%- include('../../partials/header.ejs') %>
+
 <body>
-    <%- include('../../partials/homenavbar.ejs') %> 
-    <div class="container mb-2 mt-2">
-        <%- include('../../partials/categories.ejs') %>
-        <h3 class="pb-3 mb-4 mt-3 font-italic border-bottom">
-          Posts mais antigos!
-        </h3>
-        <div class="row mb-2">
-            <% result.articles.rows.forEach(article =>{%>
-                    <div class="col-md-6">
-                      <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                        <div class="card-body d-flex flex-column align-items-start">
-                          <strong class="d-inline-block mb-2 text-primary"><%= article.category.title %></strong>
-                          <h4 class="mb-0">
-                            <a class="text-dark" href="/<%= article.slug %>"><%= article.title %></a>
-                          </h4>
-                          <div class="mb-1 text-muted"><%=  %></div>
-                          <p class="card-text mb-auto"><%= article.sinopse %></p>
-                          <a href="/<%= article.slug %>" class="btn btn-outline-primary">Continue lendo</a>
-                        </div>
-                        <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
-                      </div>
-                    </div>
-            <% }) %>
+  <%- include('../../partials/homenavbar.ejs') %>
+  <div class="container mb-2 mt-2">
+    <%- include('../../partials/categories.ejs') %>
+    <h3 class="pb-3 mb-4 mt-3 font-italic border-bottom">
+      Posts mais antigos!
+    </h3>
+    <div class="row mb-2">
+      <% result.articles.rows.forEach(article =>{%>
+      <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-2 text-primary"><%= article.category.title %></strong>
+            <h4 class="mb-0">
+              <a class="text-dark" href="/<%= article.slug %>"><%= article.title %></a>
+            </h4>
+            <div class="mb-1 text-muted"><%=  %></div>
+            <p class="card-text mb-auto"><%= article.sinopse %></p>
+            <a href="/<%= article.slug %>" class="btn btn-outline-primary">Continue lendo</a>
+          </div>
+          <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb"
+            alt="Card image cap">
         </div>
-        <nav class="blog-pagination d-flex justify-content-end">
-          <a class="btn btn-outline-primary" href="/">Mais novos</a>
-          <a class="btn btn-outline-primary ml-2" href="/articles/page/2">Mais antigos</a>
-        </nav>
+      </div>
+      <% }) %>
     </div>
-    <%- include('../../partials/homefooter.ejs') %> 
+    <nav class="blog-pagination d-flex justify-content-end">
+
+      <% if(result.page > 2){%>
+        <a class="btn btn-outline-primary ml-2" href="/articles/page/<%= result.page - 1 %>">Mais novos</a>
+      <% }else if(result.page == 2){%>
+        <a class="btn btn-outline-primary ml-2" href="/">Mais novos</a>
+      <% }else{%>
+        <a class="btn btn-outline-secondary ml-2 disabled" href="/">Mais novos</a>
+      <% } %> 
+
+      <% if(result.next){%>
+       <a class="btn btn-outline-primary ml-2" href="/articles/page/<%= result.page + 1 %>">Mais antigos</a>
+      <% }else{%>
+        <a class="btn btn-outline-secondary ml-2 disabled" href="/articles/page/<%= result.page + 1 %>">Mais antigos</a>
+      <% } %>
+      
+    </nav>
+  </div>
+  <%- include('../../partials/homefooter.ejs') %>
 </body>
 <%- include('../../partials/footer.ejs') %>
