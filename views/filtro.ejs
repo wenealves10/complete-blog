@@ -22,7 +22,7 @@
             <h4 class="mb-0">
               <a class="text-dark" href="/<%= article.slug %>"><%= article.title %></a>
             </h4>
-            <div class="mb-1 text-muted"><%= article.updatedAt.toString().replace('GMT-0300 (GMT-03:00)','')  %></div>
+            <div class="mb-1 text-muted"><%= new Date(article.updatedAt).toLocaleDateString() %> às <%= new Date(article.updatedAt).toLocaleTimeString() %></div>
             <p class="card-text mb-auto"><%= article.sinopse %></p>
             <a href="/<%= article.slug %>" class="btn btn-outline-primary">Continue lendo</a>
           </div>
