@@ -3,7 +3,9 @@
     <%- include('../../partials/homenavbar.ejs') %> 
     <div class="container mb-2 mt-2">
         <%- include('../../partials/categories.ejs') %>
-        <h1 class="text-center mt-4 mb-4 display-4">Posts Antigos</h1>
+        <h3 class="pb-3 mb-4 mt-3 font-italic border-bottom">
+          Posts mais antigos!
+        </h3>
         <div class="row mb-2">
             <% result.articles.rows.forEach(article =>{%>
                     <div class="col-md-6">
