@@ -8,6 +8,7 @@
       Posts mais antigos!
     </h3>
     <div class="row mb-2">
+      <% if(result.articles.length > 0){%> 
       <% result.articles.rows.forEach(article =>{%>
       <div class="col-md-6">
         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
@@ -25,6 +26,11 @@
         </div>
       </div>
       <% }) %>
+    <% }else{%>
+      <div class="col-12 px-4 mx-auto text-center mb-5">
+        <h1 class="display-4 font-italic m-5 p-4">Nenhum post foi encontrado!</h1>
+      </div>
+    <% } %>  
     </div>
     <nav class="blog-pagination d-flex justify-content-end">
 
