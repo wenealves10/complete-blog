@@ -7,14 +7,11 @@ $(function(){
     $(document).on('click','input[type=text]',function(){ this.select()})
 });
 
-
 Holder.addTheme('thumb', {
   bg: '#55595c',
   fg: '#eceeef',
-  text: 'Thumbnail'
+  text: 'Imagens'
 });
-
-
 
 tinymce.init({
     selector: '#article',
