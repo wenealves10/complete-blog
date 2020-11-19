@@ -43,7 +43,9 @@ app.get('/', (req, res) => {
             order: [
                 ['id', 'DESC']
             ],
-            include: [{model: Category}],
+            include: [{
+                model: Category
+            }],
             limit: 4
         })
         .then(articles => {
@@ -63,8 +65,10 @@ app.get('/:slug', (req, res) => {
     Article.findOne({
         where: {
             slug
-        }
-
+        },
+        include: [{
+            model: Category
+        }],
     }).then(article => {
         if (article != undefined) {
             Category.findAll()
@@ -82,27 +86,29 @@ app.get('/:slug', (req, res) => {
     })
 })
 
-app.get('/categories/:slug',(req, res) =>{
+app.get('/categories/:slug', (req, res) => {
     let slug = req.params.slug
     Category.findOne({
         where: {
             slug: slug
         },
-        include: [{model: Article}],
-    }).then(category =>{
-        if(category != undefined){
+        include: [{
+            model: Article
+        }],
+    }).then(category => {
+        if (category != undefined) {
             Category.findAll()
-                .then(categories =>{
-                    res.render('filtro',{
+                .then(categories => {
+                    res.render('filtro', {
                         articles: category.articles,
                         categories,
                         category
                     })
                 })
-        }else{
+        } else {
             res.redirect('/')
         }
-    }).catch(err =>{
+    }).catch(err => {
         res.redirect('/')
     })
 })
@@ -114,7 +120,7 @@ app.use('/', categoriesController)
 app.use('/', articlesController)
 
 //rotas de usuários
-app.use('/',usersController)
+app.use('/', usersController)
 
 // porta da aplicação
 app.listen(configs.port, () => {
