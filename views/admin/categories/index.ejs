@@ -51,7 +51,7 @@
                             <label class="text-dark"
                               for="editsaves<%= category.id  %>"><strong>Título da categoria</strong></label>
                             <input type="text" class="form-control" id="editsaves<%= category.id  %>"
-                              name="categoryEdit" value="<%= category.title %>" />
+                              name="categoryEdit" value="<%= category.title %>" maxlength="30" minlength="3" />
 
                             <input type="number" name="editID" hidden="hidden" value="<%= category.id %>" />
                           </form>
