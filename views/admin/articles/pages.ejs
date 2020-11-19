@@ -19,7 +19,7 @@
             </h4>
             <div class="mb-1 text-muted"><%= new Date(article.updatedAt).toLocaleDateString() %> às <%= new Date(article.updatedAt).toLocaleTimeString() %></div>
             <p class="card-text mb-auto"><%= article.sinopse %></p>
-            <a href="/<%= article.slug %>" class="btn btn-outline-primary">Continue lendo</a>
+            <a href="/<%= article.slug %>" class="btn-link mt-1">Continue lendo</a>
           </div>
           <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb"
             alt="Card image cap">
