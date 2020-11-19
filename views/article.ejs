@@ -3,16 +3,31 @@
 <body>
     <%- include('./partials/homenavbar.ejs') %>
     <div class="container mb-2 mt-2">
-        <%- include('./partials/categories.ejs') %> 
-            <div class="card border-ligth">
-                <div class="card-header text-center">
-                    <h1><%= article.title %></h1>
+        <%- include('./partials/categories.ejs') %>
+        <div class="card border-light mb-3">
+            <div class="card-body" style="font-size: 1.2rem">
+                <div class="container-fluid text-center">
+                    <h2 class="text-dark"><%= article.title %></h2>
+                    <hr>
                 </div>
-                <div class="card-body text-center">
-                    <%- article.body %> 
+                <div class="mb-1 text-muted flex-auto justify-content-xl-between d-xl-flex ">
+                    <p><strong class="text-dark">Publicação: </strong>
+                        <%= new Date(article.createdAt).toLocaleDateString() %> às
+                        <%= new Date(article.createdAt).toLocaleTimeString() %></p>
+                    <% if((new Date(article.createdAt).toLocaleTimeString()) != 
+                    (new Date(article.updatedAt).toLocaleTimeString())){%>
+                    <p><strong class="text-dark">Última atualização: </strong>
+                        <%= new Date(article.updatedAt).toLocaleDateString() %> às
+                        <%= new Date(article.updatedAt).toLocaleTimeString() %></p>
+                    <% } %>
+                    <p class="text-secondary"><strong class="text-dark">categoria: </strong>
+                        <%= article.category.title %></p>
                 </div>
+                <br>
+                <article><%- article.body %></article>
             </div>
+        </div>
     </div>
-    <%- include('./partials/homefooter.ejs') %> 
+    <%- include('./partials/homefooter.ejs') %>
 </body>
 <%- include('./partials/footer.ejs') %>
