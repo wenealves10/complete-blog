@@ -25,5 +25,5 @@ tinymce.init({
       'bullist numlist outdent indent | link image | print preview media fullpage | ' +
       'forecolor backcolor emoticons',
     menubar: 'favs file edit view insert format tools table help',
-    content_css: 'css/content.css'
+    content_css: 'css/content.css',
   });
