@@ -1,58 +1,62 @@
 <%- include('./partials/header.ejs') %>
 
 <body>
-    <%- include('./partials/homenavbar.ejs') %>
-    <div class="container mb-2 mt-2">
-      <%- include('./partials/categories.ejs') %>
-    </div>
-    <div class="container-fluid">
-      <div class="jumbotron p-3 p-md-5 text-white rounded bg-secondary">
-        <div class="col-md-6 px-0 mx-auto text-center">
-          <h1 class="display-4 font-italic">Blog do WeneDev</h1>
-          <p class="lead my-3 text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio velit eum aut odio necessitatibus cumque ex repudiandae, ullam distinctio eveniet enim iusto, officia labore adipisci ipsa corrupti laudantium explicabo provident.</p>
-        </div>
+  <%- include('./partials/homenavbar.ejs') %>
+  <div class="container mb-2 mt-2">
+    <%- include('./partials/categories.ejs') %>
+  </div>
+  <div class="container-fluid">
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-secondary">
+      <div class="col-md-6 px-0 mx-auto text-center">
+        <h1 class="display-4 font-italic">Blog do WeneDev</h1>
+        <p class="lead my-3 text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio velit eum aut
+          odio necessitatibus cumque ex repudiandae, ullam distinctio eveniet enim iusto, officia labore adipisci ipsa
+          corrupti laudantium explicabo provident.</p>
       </div>
     </div>
-    <div class="container mb-2 mt-2">
-        <h3 class="pb-3 mb-4 font-italic border-bottom">
-          Posts recentes!
-        </h3>
-        <div class="row mb-1">
-          <% if(articles.length > 0){%> 
-            <% articles.forEach(article =>{%>
-                    <div class="col-md-6">
-                      <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                        <div class="card-body d-flex flex-column align-items-start">
-                          <strong class="d-inline-block mb-2 text-primary"><%= article.category.title %></strong>
-                          <h4 class="mb-0">
-                            <a class="text-dark" href="/<%= article.slug %>"><%= article.title %></a>
-                          </h4>
-                          <div class="mb-1 text-muted"><%= new Date(article.updatedAt).toLocaleDateString() %> às <%= new Date(article.updatedAt).toLocaleTimeString() %></div>
-                          <p class="card-text mb-auto"><%= article.sinopse %></p>
-                          <a href="/<%= article.slug %>" class="btn btn-outline-primary">Continue lendo</a>
-                        </div>
-                        <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap" src="images/violino.jpg" width="200" height="250">
-                      </div>
-                    </div>
-            <% }) %>
-            <% }else{%>
-              <div class="col-12 px-4 mx-auto text-center mb-5">
-                <h1 class="display-4 font-italic m-3">Nenhum post foi encontrado!</h1>
-              </div>
-            <% } %> 
+  </div>
+  <div class="container mb-2 mt-2">
+    <h3 class="pb-3 mb-4 font-italic border-bottom">
+      Posts recentes!
+    </h3>
+    <div class="row mb-1">
+      <% if(articles.length > 0){%>
+      <% articles.forEach(article =>{%>
+      <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <strong class="d-inline-block mb-2 text-primary"><%= article.category.title %></strong>
+            <h4 class="mb-0">
+              <a class="text-dark" href="/<%= article.slug %>"><%= article.title %></a>
+            </h4>
+            <div class="mb-1 text-muted"><%= new Date(article.updatedAt).toLocaleDateString() %> às
+              <%= new Date(article.updatedAt).toLocaleTimeString() %></div>
+            <p class="card-text mb-auto"><%= article.sinopse %></p>
+            <a href="/<%= article.slug %>" class="btn-link mt-1">Continue lendo</a>
+          </div>
+          <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb"
+            alt="Card image cap" src="images/violino.jpg" width="200" height="250">
         </div>
-        <% if(articles.length > 0){%>
-        <nav class="blog-pagination d-flex justify-content-end">
-          <a class="btn btn-outline-secondary disabled" href="/">Mais novos</a>
-          <a class="btn btn-outline-primary ml-2" href="/articles/page/2">Mais antigos</a>
-        </nav>
-        <% }else{%>
-          <nav class="blog-pagination d-flex justify-content-end">
-            <a class="btn btn-outline-secondary disabled" href="/">Mais novos</a>
-            <a class="btn btn-outline-secondary disabled ml-2" href="/articles/page/2">Mais antigos</a>
-          </nav>
-        <% } %>  
+      </div>
+      <% }) %>
+      <% }else{%>
+      <div class="col-12 px-4 mx-auto text-center mb-5">
+        <h1 class="display-4 font-italic m-3">Nenhum post foi encontrado!</h1>
+      </div>
+      <% } %>
     </div>
-    <%- include('./partials/homefooter.ejs') %> 
+    <% if(articles.length > 0){%>
+    <nav class="blog-pagination d-flex justify-content-end">
+      <a class="btn btn-outline-secondary disabled" href="/">Mais novos</a>
+      <a class="btn btn-outline-primary ml-2" href="/articles/page/2">Mais antigos</a>
+    </nav>
+    <% }else{%>
+    <nav class="blog-pagination d-flex justify-content-end">
+      <a class="btn btn-outline-secondary disabled" href="/">Mais novos</a>
+      <a class="btn btn-outline-secondary disabled ml-2" href="/articles/page/2">Mais antigos</a>
+    </nav>
+    <% } %>
+  </div>
+  <%- include('./partials/homefooter.ejs') %>
 </body>
 <%- include('./partials/footer.ejs') %>
