@@ -37,10 +37,17 @@
               </div>
             <% } %> 
         </div>
+        <% if(articles.length > 0){%>
         <nav class="blog-pagination d-flex justify-content-end">
           <a class="btn btn-outline-secondary disabled" href="/">Mais novos</a>
           <a class="btn btn-outline-primary ml-2" href="/articles/page/2">Mais antigos</a>
         </nav>
+        <% }else{%>
+          <nav class="blog-pagination d-flex justify-content-end">
+            <a class="btn btn-outline-secondary disabled" href="/">Mais novos</a>
+            <a class="btn btn-outline-secondary disabled ml-2" href="/articles/page/2">Mais antigos</a>
+          </nav>
+        <% } %>  
     </div>
     <%- include('./partials/homefooter.ejs') %> 
 </body>
