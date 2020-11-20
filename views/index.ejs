@@ -33,7 +33,7 @@
             <a href="/<%= article.slug %>" class="btn-link mt-1">Continue lendo</a>
           </div>
           <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb"
-            alt="Card image cap" src="images/violino.jpg" width="200" height="250">
+            alt="Card image cap" src="images/uploads/violino.jpg" width="200" height="250">
         </div>
       </div>
       <% }) %>
@@ -66,9 +66,21 @@
         <p><a class="btn btn-outline-primary btn-lg" href="https://github.com/wenealves10" target="_blank" role="button">Saiba mais &raquo;</a></p>
       </div>
     </div>
-    <h3 class="pb-3 mb-4 font-italic border-bottom text-center" id="contato">
-      Contato
+    <h3 class="pb-3 mb-4 font-italic border-bottom text-center" id="newsletter">
+      Newsletter
     </h3>
+    <p class="lead my-3">Se inscreva para recebe em primeira mão as notícias e artigos de tutoriais.</p>
+    <form action="#" method="POST" class="mb-5">
+      <div class="form-row">
+        <div class=" col-12 input-group mb-3">
+          <input type="email" name="emailNewsletter" class="form-control" placeholder="Digite seu email" aria-label="Email" aria-describedby="newsletter-email">
+          <div class="input-group-append">
+            <button class="btn btn-outline-info" type="submit" id="newsletter-email">Inscrever</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
   </div>
   <%- include('./partials/homefooter.ejs') %>
 </body>
