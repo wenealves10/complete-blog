@@ -3,7 +3,21 @@ const router = express.Router()
 const Category = require('../categories/Category')
 const Article = require('./Article')
 const slugify = require('slugify')
+const multer = require('multer')
 
+let nome = ''
+
+const storage = multer.diskStorage({
+    destination: function(req,file,callback){
+        callback(null,'./public/uploads')
+    },
+    filename: function(req,file,callback){
+        nome = `${Date.now()}_${file.originalname}`
+        callback(null,nome)
+    }
+})
+
+const upload = multer({storage}).single('imageThumb')
 
 router.get('/admin/articles', (req, res) => {
     Article.findAll({
@@ -91,12 +105,12 @@ router.get('/articles/page/:number', (req, res) => {
 })
 
 
-router.post('/articles/save', (req, res) => {
+router.post('/articles/save',upload, (req, res) => {
     let categoryId = req.body.category
     let articleTitle = req.body.title
     let articleBody = req.body.body
     let sinopse = req.body.sinopse
-    let thumbnail = 'images.jpg'
+    let thumbnail = nome
 
     if (articleTitle != undefined && articleBody != undefined && sinopse != undefined) {
         Article.create({
@@ -110,6 +124,7 @@ router.post('/articles/save', (req, res) => {
             categoryId,
         }).then(() => {
             res.redirect('/admin/articles')
+            nome=''
         })
     } else {
         res.redirect('/admin/articles/new')
