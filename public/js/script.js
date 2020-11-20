@@ -3,8 +3,21 @@ function sendEdit(nameForm) {
     form.submit()
 }
 
+
+
 $(function(){
     $(document).on('click','input[type=text]',function(){ this.select()})
+    $(document).on('click','#nv > a',function (e) {
+      e.preventDefault();
+      let href = $(this).attr('href')
+      let setScroll = $(href).offset().top
+      console.log(href)
+      $('html,body').animate({
+        'scrollTop': setScroll
+      },1000)
+
+      return false
+    })
 });
 
 Holder.addTheme('thumb', {
