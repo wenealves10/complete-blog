@@ -8,7 +8,7 @@
                 <h4>Novo Artigo</h4>
             </div>
             <div class="card-body">
-                <form action="/articles/save" method="POST">
+                <form action="/articles/save" method="POST" enctype="multipart/form-data">
                     <label for="categoryTitle">Título do artigo</label>
                     <input required name="title" id="categoryTitle" type="text" class="form-control mb-2"
                         placeholder="Digite o título aqui" minlength="4" maxlength="40" />
