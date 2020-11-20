@@ -18,9 +18,14 @@
                     </select>
                     <label for="sinopse">Sinopse do artigo</label>
                     <input type="text" name="sinopse" class="form-control" id="sinopse" required placeholder="Escreva a sinopse aqui"/>
-                    <div class="form-group mt-2 mb-2" minlength="4" maxlength="100">
-                        <label for="thumbnail">Escolha a thumbnail do post</label>
-                        <input type="file" accept='image/*' class="form-control-file" id="thumbnail" name="imagePost">
+                    <div class="input-group mb-2 mt-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="thumbnail">Upload Thumbnail</span>
+                        </div>
+                        <div class="custom-file">
+                          <input type="file" name="thumbnail" class="custom-file-input" id="idThumbnail" aria-describedby="thumbnail" accept="image/png, image/jpeg"  multiple/>
+                          <label class="custom-file-label" for="idThumbnail">Escolher arquivo</label>
+                        </div>
                     </div>
                     <label for="article">Artigo</label>                   
                     <textarea name="body" id="article" class="form-control" placeholder="Escreva o contéudo aqui" rows="25"></textarea>
