@@ -148,12 +148,13 @@ router.post('/articles/delete', (req, res) => {
     }
 })
 
-router.post('/articles/edit', (req, res) => {
+router.post('/articles/edit',upload, (req, res) => {
     let id = req.body.id
     let title = req.body.title
     let body = req.body.body
     let sinopse = req.body.sinopse
     let categoryId = req.body.category
+    let thumbnail = nome
     if (!isNaN(id) && id != undefined) {
 
         Article.update({
@@ -163,6 +164,7 @@ router.post('/articles/edit', (req, res) => {
             }),
             body: body,
             sinopse: sinopse,
+            thumbnail,
             categoryId: categoryId
         }, {
             where: {
