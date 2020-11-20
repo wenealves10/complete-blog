@@ -1,7 +1,8 @@
 <%- include('../../partials/header.ejs') %>
+
 <body id="top">
     <%- include('../../partials/navbar.ejs') %>
-    <div class="container mt-3">
+    <div class="container-fluid mt-3">
         <div class="card bg-secondary text-light m-2">
             <div class="card-header text-center">
                 <h4>Novo Artigo</h4>
@@ -9,33 +10,34 @@
             <div class="card-body">
                 <form action="/articles/save" method="POST">
                     <label for="categoryTitle">Título do artigo</label>
-                    <input required name="title" id="categoryTitle" type="text" class="form-control mb-2" placeholder="Digite o título aqui" minlength="4" maxlength="40"/>
-                    <label for="categoryID">Categoria</label> 
+                    <input required name="title" id="categoryTitle" type="text" class="form-control mb-2"
+                        placeholder="Digite o título aqui" minlength="4" maxlength="40" />
+                    <label for="categoryID">Categoria</label>
                     <select required name="category" id="categoryID" class="form-control mb-4">
-                        <% categories.forEach(category =>{%> 
-                            <option value="<%= category.id %>"><%= category.title %></option>
-                        <% }) %> 
+                        <% categories.forEach(category =>{%>
+                        <option value="<%= category.id %>"><%= category.title %></option>
+                        <% }) %>
                     </select>
                     <label for="sinopse">Sinopse do artigo</label>
-                    <input type="text" name="sinopse" class="form-control" id="sinopse" required placeholder="Escreva a sinopse aqui"/>
-                    <div class="input-group mb-2 mt-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="thumbnail">Upload Thumbnail</span>
-                        </div>
+                    <input type="text" name="sinopse" class="form-control mb-2" id="sinopse" required
+                        placeholder="Escreva a sinopse aqui" />
+                    <label for="thumbnail">Imagem de Thumb</label>
+                    <div class="embed-responsive">
                         <div class="custom-file">
-                          <input type="file" name="thumbnail" class="custom-file-input" id="idThumbnail" aria-describedby="thumbnail" accept="image/png, image/jpeg"  multiple/>
-                          <label class="custom-file-label" for="idThumbnail">Escolher arquivo</label>
+                            <input type="file" name="imageThumb" class="custom-file-input" id="thumbnail"
+                                aria-describedby="Thumbnail" aria-describedby="thumbnail" accept="image/png, image/jpeg"
+                                multiple />
+                            <label class="custom-file-label" for="thumbnail">Escolher uma imagem</label>
                         </div>
                     </div>
-                    <label for="article">Artigo</label>                   
-                    <textarea name="body" id="article" class="form-control" placeholder="Escreva o contéudo aqui" rows="25"></textarea>
+                    <label for="article" class="mt-2 d-block">Artigo</label>
+                    <textarea name="body" id="article" class="form-control" placeholder="Escreva o contéudo aqui"
+                        rows="25"></textarea>
                     <button type="submit" class="btn btn-success mt-2">Publicar</button>
                 </form>
             </div>
         </div>
     </div>
-    <%- include('../../partials/homefooter.ejs') %> 
+    <%- include('../../partials/homefooter.ejs') %>
 </body>
 <%- include('../../partials/footer.ejs') %>
-
-
