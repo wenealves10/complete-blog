@@ -17,7 +17,7 @@
             <h4 class="mb-0">
               <a class="text-dark" href="/<%= article.slug %>"><%= article.title %></a>
             </h4>
-            <div class="mb-1 text-muted"><%= new Date(article.updatedAt).toLocaleDateString() %> às <%= new Date(article.updatedAt).toLocaleTimeString() %></div>
+            <div class="mb-1 text-muted"><%= new Date(article.createdAt).toLocaleDateString() %> às <%= new Date(article.createdAt).toLocaleTimeString() %></div>
             <p class="card-text mb-auto"><%= article.sinopse %></p>
             <a href="/<%= article.slug %>" class="btn-link mt-1">Continue lendo</a>
           </div>
