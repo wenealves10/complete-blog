@@ -7,7 +7,7 @@ function sendEdit(nameForm) {
 
 $(function(){
     $(document).on('click','input[type=text]',function(){ this.select()})
-    $(document).on('click','#nv > a',function (e) {
+    $(document).on('click','#nv > a,#ft > a ',function (e) {
       e.preventDefault();
       let href = $(this).attr('href')
       let setScroll = $(href).offset().top
