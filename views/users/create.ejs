@@ -1,9 +1,27 @@
 <%- include('../partials/header.ejs') %>
+
 <body id="top">
     <%- include('../partials/navbar.ejs') %>
     <div class="container mt-3">
-       <h1>Criação de Usuários</h1>
+        <hr class="mb-5">
+        <div class="card bg-secondary text-light mx-auto">
+            <div class="card-header text-center">
+                <h3>Criar Usuário</h3>
+            </div>
+            <div class="card-body">
+                <form action="/users/save" method="POST">
+                    <label for="email"><strong>E-mail</strong></label>
+                    <input id="email" required type="email" placeholder="Digite seu e-mail" name="email"
+                        class="form-control" />
+                    <label for="password" class="mt-1"><strong>Senha</strong></label>
+                <input type="password" class="form-control" name="password" id="password" required="required" placeholder="Digite sua senha" minlength="6" maxlength="16">
+                <button class="btn btn-success btn-block mt-3" type="submit">Criar novo usuário</button>
+
+                </form>
+            </div>
+        </div>
+        <hr class="mt-5">
     </div>
-    <%- include('../partials/homefooter.ejs') %> 
+    <%- include('../partials/homefooter.ejs') %>
 </body>
 <%- include('../partials/footer.ejs') %>
