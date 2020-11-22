@@ -4,6 +4,7 @@ const Category = require('../categories/Category')
 const Article = require('./Article')
 const slugify = require('slugify')
 const multer = require('multer')
+const adminAuth = require('../middlewares/AdminAuth')
 
 let nome = ''
 
@@ -19,7 +20,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage}).single('imageThumb')
 
-router.get('/admin/articles', (req, res) => {
+router.get('/admin/articles',adminAuth, (req, res) => {
     Article.findAll({
         include: [{
             model: Category
@@ -31,7 +32,7 @@ router.get('/admin/articles', (req, res) => {
     })
 })
 
-router.get('/admin/articles/new', (req, res) => {
+router.get('/admin/articles/new',adminAuth, (req, res) => {
     Category.findAll().then(categories => {
         res.render('admin/articles/new', {
             categories
@@ -39,7 +40,7 @@ router.get('/admin/articles/new', (req, res) => {
     })
 })
 
-router.get('/admin/articles/edit/:id', (req, res) => {
+router.get('/admin/articles/edit/:id',adminAuth, (req, res) => {
     let id = req.params.id
     if (!isNaN(id) && id != undefined) {
         Article.findByPk(id)
@@ -105,7 +106,7 @@ router.get('/articles/page/:number', (req, res) => {
 })
 
 
-router.post('/articles/save',upload, (req, res) => {
+router.post('/articles/save', adminAuth, upload, (req, res) => {
     let categoryId = req.body.category
     let articleTitle = req.body.title
     let articleBody = req.body.body
@@ -132,7 +133,7 @@ router.post('/articles/save',upload, (req, res) => {
 
 })
 
-router.post('/articles/delete', (req, res) => {
+router.post('/articles/delete', adminAuth, (req, res) => {
     let id = req.body.id
 
     if (!isNaN(id) && id != undefined) {
@@ -148,7 +149,7 @@ router.post('/articles/delete', (req, res) => {
     }
 })
 
-router.post('/articles/edit',upload, (req, res) => {
+router.post('/articles/edit',adminAuth,upload, (req, res) => {
     let id = req.body.id
     let title = req.body.title
     let body = req.body.body

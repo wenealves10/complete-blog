@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router()
 const Users = require('./Users')
 const bcrypt = require('bcryptjs')
+const adminAuth = require('../middlewares/AdminAuth')
 
-
-router.get('/admin/users', (req, res) => {
+router.get('/admin/users',adminAuth, (req, res) => {
     Users.findAll()
         .then(users => {
             res.render('users/users', {
@@ -15,7 +15,7 @@ router.get('/admin/users', (req, res) => {
         })
 })
 
-router.get('/admin/users/create', (req, res) => {
+router.get('/admin/users/create',adminAuth, (req, res) => {
     res.render('users/create')
 })
 
@@ -54,7 +54,7 @@ router.post('/authenticate',(req, res) =>{
 })
 
 
-router.post('/users/save', (req, res) => {
+router.post('/users/save', adminAuth , (req, res) => {
     let email = req.body.email
     let password = req.body.password
 
