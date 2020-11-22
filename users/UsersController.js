@@ -19,6 +19,11 @@ router.get('/admin/users/create', (req, res) => {
     res.render('users/create')
 })
 
+router.get('/admin/login',(req, res) =>{
+    res.render('users/login')
+})
+
+
 router.post('/users/save', (req, res) => {
     let email = req.body.email
     let password = req.body.password
