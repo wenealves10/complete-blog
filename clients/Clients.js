@@ -8,6 +8,6 @@ const Clients = connection.define('clients',{
     }
 })
 
-// Clients.sync({force: true})
+Clients.sync({force: false})
 
 module.exports = Clients
