@@ -5,7 +5,17 @@ const bcrypt = require('bcryptjs')
 
 
 router.get('/admin/users', (req, res) => {
-    res.render('users/users')
+    Users.findAll({
+        order: [
+            ['id','DESC']
+        ]
+    }).then(users =>{
+        res.render('users/users',{
+            users
+        })
+    }).catch(err =>{
+        res.redirect('/')
+    })
 })
 
 router.get('/admin/users/create', (req, res) => {
