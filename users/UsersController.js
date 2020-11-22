@@ -20,7 +20,11 @@ router.get('/admin/users/create',adminAuth, (req, res) => {
 })
 
 router.get('/users/login',(req, res) =>{
-    res.render('users/login')
+    if(req.session.user != undefined){
+        res.redirect('/admin/users')
+    }else{
+        res.render('users/login')
+    }
 })
 
 router.post('/authenticate',(req, res) =>{
@@ -39,9 +43,7 @@ router.post('/authenticate',(req, res) =>{
                     id: user.id,
                     email: user.email
                 }
-                res.json({
-                    user: req.session.user
-                })
+                res.redirect('/admin/users')
             }else{
                 res.redirect('/users/login')
             }
