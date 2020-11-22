@@ -27,6 +27,11 @@ router.get('/users/login',(req, res) =>{
     }
 })
 
+router.get('/users/logout', (req, res) => {
+    req.session.user = undefined
+    res.redirect('/')
+})
+
 router.post('/authenticate',(req, res) =>{
     let email = req.body.email
     let password = req.body.password
