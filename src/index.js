@@ -26,7 +26,7 @@ app.set('view engine', 'ejs')
 app.use(session({
     secret: 'darkcsshtml',
     cookie: {
-        maxAge: 30000
+        maxAge: 604800000
     }
 }))
 app.use(express.static('public'))
