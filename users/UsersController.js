@@ -19,8 +19,38 @@ router.get('/admin/users/create', (req, res) => {
     res.render('users/create')
 })
 
-router.get('/admin/login',(req, res) =>{
+router.get('/users/login',(req, res) =>{
     res.render('users/login')
+})
+
+router.post('/authenticate',(req, res) =>{
+    let email = req.body.email
+    let password = req.body.password
+   
+    Users.findOne({
+        where: {
+            email: email
+        }
+    }).then(user =>{
+        if(user != undefined){
+            let compare = bcrypt.compareSync(password, user.password)
+            if(compare){
+                req.session.user = {
+                    id: user.id,
+                    email: user.email
+                }
+                res.json({
+                    user: req.session.user
+                })
+            }else{
+                res.redirect('/users/login')
+            }
+        }else{
+            res.redirect('/users/login')
+        }
+    }).catch( err =>{
+        res.redirect('/users/login')
+    })
 })
 
 
