@@ -6,13 +6,13 @@ const bcrypt = require('bcryptjs')
 
 router.get('/admin/users', (req, res) => {
     Users.findAll()
-        .then(users =>{
-        res.render('users/users',{
-            users
+        .then(users => {
+            res.render('users/users', {
+                users
+            })
+        }).catch(err => {
+            res.redirect('/')
         })
-    }).catch(err =>{
-        res.redirect('/')
-    })
 })
 
 router.get('/admin/users/create', (req, res) => {
@@ -24,17 +24,29 @@ router.post('/users/save', (req, res) => {
     let password = req.body.password
 
     if (email != '' && password != '') {
-        let salt = bcrypt.genSaltSync(10)
-        let hash = bcrypt.hashSync(password, salt)
-        Users.create({
-            email,
-            password: hash
-        }).then(_ =>{
-            res.redirect('/admin/users')
-        }).catch(err =>{
-            res.redirect('/admin/users')
+
+        Users.findOne({
+            where: {
+                email: email
+            }
+        }).then(user => {
+            if (user == undefined) {
+                let salt = bcrypt.genSaltSync(10)
+                let hash = bcrypt.hashSync(password, salt)
+                Users.create({
+                    email,
+                    password: hash
+                }).then(_ => {
+                    res.redirect('/admin/users')
+                }).catch(err => {
+                    res.redirect('/admin/users')
+                })
+            } else {
+                res.redirect('/admin/users/create')
+            }
         })
-    }else{
+
+    } else {
         res.redirect('/admin/users')
     }
 })
