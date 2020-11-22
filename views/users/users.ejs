@@ -1,11 +1,37 @@
 <%- include('../partials/header.ejs') %>
+
 <body id="top">
     <%- include('../partials/navbar.ejs') %>
     <div class="container mt-3">
-       <h2>Novo usuário</h2>
-       <a href="/admin/users/create" class="btn btn-outline-info">Criar usuário</a>
-       <hr>
+        <h2>Novo usuário</h2>
+        <a href="/admin/users/create" class="btn btn-outline-info">Criar usuário</a>
+        <hr>
+        <div class="card  bg-secondary text-light">
+            <div class="card-header text-center">
+                <h3>Usuários</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="table-light text-dark text-center">
+                            <tr>
+                                <th scope="col">#ID</th>
+                                <th scope="col">#E-mail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user =>{%>
+                            <tr class="text-center">
+                                <th scope="row"><%= user.id %></th>
+                                <td><%= user.email %></td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <%- include('../partials/homefooter.ejs') %> 
+    <%- include('../partials/homefooter.ejs') %>
 </body>
 <%- include('../partials/footer.ejs') %>
