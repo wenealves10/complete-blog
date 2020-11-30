@@ -1,1 +1,1 @@
-# blog-complete
+# Complete blog project, in BootStrap and Nodejs
