@@ -2,11 +2,12 @@
 #### to clone the repository is 
 ```git clone https://github.com/wenealves10/blog-complete.git ```
 #### install Mysql server
-```https://dev.mysql.com/downloads/```
-##### Install the MySQL Server community
+ MySQL Server community
+ https://dev.mysql.com/downloads/
+
 
 ### Install NodeJS
-```https://nodejs.org/en/download/```
+https://nodejs.org/en/download/
 
 ```LTS Version: 12.15.1```
 
