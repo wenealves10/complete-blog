@@ -5,12 +5,10 @@
  MySQL Server community
  https://dev.mysql.com/downloads/
 
-
 ### Install NodeJS
 https://nodejs.org/en/download/
 
 ```LTS Version: 12.15.1```
-
 
 #### To install the dependencies it is
 ```npm install```
