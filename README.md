@@ -1,4 +1,4 @@
-# Complete blog project, in BootStrap and Nodej
+# Complete blog project, in BootStrap and Nodejs
 #### to clone the repository is 
 ```git clone https://github.com/wenealves10/blog-complete.git ```
 #### install Mysql server
